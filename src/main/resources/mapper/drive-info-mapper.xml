@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.praise.mapper.DriveInfoMapper">
+
+	<resultMap id="DriveInfo" type="com.praise.dto.DriveInfoDto">
+		<result property="id" column="id" />
+		<result property="point" column="point" />
+		<result property="startDate" column="start_date" />
+		<result property="endDate" column="end_date" />
+		<result property="driveDistance" column="drive_distance" />
+		<result property="maxSpeed" column="max_speed" />
+		<result property="startLat" column="start_lat" />
+		<result property="startLon" column="start_lon" />
+		<result property="endLat" column="end_lat" />
+		<result property="endLon" column="end_lon" />
+		<result property="memberId" column="member_id" />
+	</resultMap>
+
+	<select id="selectDriveInfoList" resultMap="DriveInfo">
+	SELECT id
+		,point
+		,start_date
+		,end_date
+		,drive_distance
+		,max_speed
+		,start_lat
+		,start_lon
+		,end_lat
+		,end_lon
+		,member_id
+	FROM drive_info
+	</select>
+	
+	<select id="selectDriveInfo" parameterType="int" resultMap="DriveInfo">
+	SELECT id
+		,point
+		,start_date
+		,end_date
+		,drive_distance
+		,max_speed
+		,start_lat
+		,start_lon
+		,end_lat
+		,end_lon
+		,member_id
+	FROM drive_info
+	WHERE id = #{id}
+	</select>
+	
+	<insert id="createDriveInfo" parameterType="com.praise.dto.DriveInfoDto">
+	INSERT INTO drive_info (
+		point
+		,start_date
+		,end_date
+		,drive_distance
+		,max_speed
+		,start_lat
+		,start_lon
+		,end_lat
+		,end_lon
+		,member_id
+	)
+	VALUES(
+		#{point}
+		,#{startDate}
+		,#{endDate}
+		,#{driveDistance}
+		,#{maxSpeed}
+		,#{startLat}
+		,#{startLon}
+		,#{endLat}
+		,#{endLon}
+		,#{memberId}
+	)
+	</insert>
+	
+	<update id="updateDriveInfo" parameterType="com.praise.dto.DriveInfoDto">
+	UPDATE drive_info
+	SET point = #{point}
+		,start_date = #{startDate}
+		,end_date = #{endDate}
+		,drive_distance = #{driveDistance}
+		,max_speed = #{maxSpeed}
+		,start_lat = #{startLat}
+		,start_lon = #{startLon}
+		,end_lat = #{endLat}
+		,end_lon = #{endLon}
+		,member_id = #{memberId}
+	WHERE id = #{id}
+	</update>
+	
+	<delete id="deleteDriveInfo" parameterType="int">
+	DELETE FROM drive_info
+	WHERE id = #{id}
+	</delete>
+
+</mapper>
+     
+   
+
